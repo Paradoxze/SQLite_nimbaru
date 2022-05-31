@@ -1,7 +1,9 @@
 package com.example.sqlite_nim;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -42,6 +44,22 @@ public class MainActivity extends AppCompatActivity {
             case R.id.listname:
                 controller.list_all_students(textView);
                 break;
+            case R.id.update:
+                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                dialog.setTitle("Masukkan Nama");
+
+                final EditText newFirstName = new EditText(this);
+                dialog.setView(newFirstName);
+
+                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        controller.update_student(firstname.getText().toString(), newFirstName.getText().toString());
+                    }
+                });
+                dialog.show();
+                break;
+
         }
     }
 }

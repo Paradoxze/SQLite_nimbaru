@@ -38,8 +38,11 @@ public class DB_Controller extends SQLiteOpenHelper {
         Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM STUDENTS", null);
         textView.setText("");
         while(cursor.moveToNext()){
-            textView.append(cursor.getString(1)+" "+cursor.getString(2)+"/n");
+            textView.append(cursor.getString(1)+" "+cursor.getString(2)+"\n");
         }
+    }
+    public void update_student(String old_firstname, String new_firstname){
+        this.getWritableDatabase().execSQL("UPDATE STUDENTS SET FIRSTNAME = '"+new_firstname+"' where FIRSTNAME= '"+old_firstname+"'");
     }
 }
 
